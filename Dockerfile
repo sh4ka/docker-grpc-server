@@ -7,4 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "./app.py" ]
+RUN python -m grpc_tools.protoc -I=./protos --python_out=. --grpc_python_out=. ./protos/helloworld.proto
+
+CMD [ "python", "./greeter_server.py" ]
